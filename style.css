@@ -51,7 +51,7 @@ a:hover {
     border: 2px solid black;
     border-radius: 20px;
     padding: 20px;
-    margin: 50px auto 50px auto;
+    margin: 20px auto 50px auto;
 }
 
 .keyboard__key {
@@ -100,7 +100,7 @@ textarea {
     width: 700px;
     border-radius: 20px;
     padding: 20px;
-    margin: 50px auto 50px auto;
+    margin: 20px auto 20px auto;
     color: black;
     outline: none;
     font-family: 'Open Sans', sans-serif;
