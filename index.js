@@ -40,6 +40,25 @@ function createVirtualKeyboard() {
         }
         keyboard.appendChild(button);
         button.appendChild(buttonTop);
+
+        button.addEventListener('click', function () {
+            let pressedKey = this.getAttribute('data-key');
+            let keyboardEventDown = new KeyboardEvent('keydown', { code: pressedKey });
+            document.dispatchEvent(keyboardEventDown);
+            let keyboardEventUp = new KeyboardEvent('keyup', { code: pressedKey });
+            document.dispatchEvent(keyboardEventUp);
+
+            const inputField = document.querySelector('input');
+            const character = button.textContent;
+            const characterToInput = character.slice(0, 1);
+            if (character !== 'backspace' && character !== 'Tab' && character !== 'Del' && character !== 'Caps Lock' &&
+                character !== 'enter' && character !== 'shift' && character !== '▼' && character !== '⇧' && character !== 'Ctrl'
+                && character !== 'Win' && character !== 'Alt' && character !== '&nbsp' && character !== '◄' && character !== '▲'
+                && character !== '►') {
+                inputField.value += characterToInput;
+            }
+
+        });
     }
 
     document.body.appendChild(keyboard);
@@ -51,7 +70,6 @@ function createVirtualKeyboard() {
 
     document.addEventListener('keydown', function (event) {
         let pressedKey = event.code;
-        console.log(pressedKey);
         let virtualKey = keyboard.querySelector(`[data-key="${pressedKey}"]`);
         if (virtualKey !== null) {
             virtualKey.classList.add('active');
@@ -64,7 +82,12 @@ function createVirtualKeyboard() {
         if (virtualKey !== null) {
             virtualKey.classList.remove('active');
         }
+        const inputField = document.querySelector('input');
+        inputField.focus();
     });
+
+    let inputField = document.createElement('input');
+    noticeOS.after(inputField);
 
 }
 

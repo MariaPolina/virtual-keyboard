@@ -75,7 +75,8 @@ a:hover {
     min-width: 235px;
 }
 
-.keyboard__key.active {
+.keyboard__key.active,
+.keyboard__key:active {
     color: black;
     background-color: white;
 }
@@ -91,4 +92,20 @@ a:hover {
     font-size: 12px;
     text-align: center;
     margin-top: 50px;
+}
+
+input {
+    display: block;
+    background-color: rgb(85, 85, 85);
+    width: 700px;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 50px auto 50px auto;
+    color: white;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
 }
