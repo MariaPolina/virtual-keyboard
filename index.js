@@ -4,10 +4,10 @@ function createVirtualKeyboard() {
 
     let keys = {
         'en': [
-            ['`', '~'], [1, '!'], [2, '@'], [3, '#'], [4, '$'], [5, '%'], [6, ':'], [7, '?'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], ['Backspace'],
+            ['`', '~'], [1, '!'], [2, '@'], [3, '#'], [4, '$'], [5, '%'], [6, ':'], [7, '?'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], ['backspace'],
             ['Tab'], ['q'], ['w'], ['e'], ['r'], ['t'], ['y'], ['u'], ['i'], ['o'],
-            ['p'], ['['], [']'], ['\\', '/'], ['Del'], ['Caps Lock'], ['a'], ['s'], ['d'], ['f'], ['g'], ['h'], ['j'], ['k'],
-            ['l'], [';'], ['\''], ['Enter'], ['Shift'], ['/'], ['z'], ['x'], ['c'], ['v'], ['b'], ['n'], ['m'], [','], ['.'],
+            ['p'], ['['], [']'], ['&#92', '/'], ['Del'], ['Caps Lock'], ['a'], ['s'], ['d'], ['f'], ['g'], ['h'], ['j'], ['k'],
+            ['l'], [';'], ['\''], ['enter'], ['shift'], ['z'], ['x'], ['c'], ['v'], ['b'], ['n'], ['m'], [','], ['.'], ['/', '?'],
             ['&#9650'], ['&#8679'], ['Ctrl'], ['Win'], ['Alt'], ['&nbsp'],
             ['Alt'], ['Ctrl'], ['&#9668'], ['&#9660'], ['&#9658']
         ],
@@ -20,12 +20,21 @@ function createVirtualKeyboard() {
         ]
     }
 
+    let keysCode = [
+        ['Backquote'], ['Digit1'], ['Digit2'], ['Digit3'], ['Digit4'], ['Digit5'], ['Digit6'], ['Digit7'], ['Digit8'], ['Digit9'], ['Digit0'], ['Minus'], ['Equal'], ['Backspace'],
+        ['Tab'], ['KeyQ'], ['KeyW'], ['KeyE'], ['KeyR'], ['KeyT'], ['KeyY'], ['KeyU'], ['KeyI'], ['KeyO'],
+        ['KeyP'], ['BracketLeft'], ['BracketRight'], ['Backslash'], ['Delete'], ['CapsLock'], ['KeyA'], ['KeyS'], ['KeyD'], ['KeyF'], ['KeyG'], ['KeyH'], ['KeyJ'], ['KeyK'],
+        ['KeyL'], ['Semicolon'], ['Quote'], ['Enter'], ['ShiftLeft'], ['KeyZ'], ['KeyX'], ['KeyC'], ['KeyV'], ['KeyB'], ['KeyN'], ['KeyM'], ['Comma'], ['Period'], ['Slash'],
+        ['ArrowUp'], ['ShiftRight'], ['ControlLeft'], ['MetaLeft'], ['AltLeft'], ['Space'],
+        ['AltRight'], ['ControlRight'], ['ArrowLeft'], ['ArrowDown'], ['ArrowRight']
+    ]
+
     for (let i = 0; i < keys.en.length; i++) {
         let button = document.createElement('div');
         let buttonTop = document.createElement('span');
         button.setAttribute('class', 'keyboard__key');
         button.innerHTML = keys.en[i][0];
-        button.setAttribute('data-key', keys.en[i][0]);
+        button.setAttribute('data-key', keysCode[i]);
         if (keys.en[i][1] !== undefined) {
             buttonTop.innerHTML = keys.en[i][1];
         }
@@ -41,7 +50,7 @@ function createVirtualKeyboard() {
     noticeOS.innerHTML = 'This keyboard was created on Windows';
 
     document.addEventListener('keydown', function (event) {
-        let pressedKey = event.key;
+        let pressedKey = event.code;
         console.log(pressedKey);
         let virtualKey = keyboard.querySelector(`[data-key="${pressedKey}"]`);
         if (virtualKey !== null) {
@@ -50,7 +59,7 @@ function createVirtualKeyboard() {
     });
 
     document.addEventListener('keyup', function (event) {
-        let releasedKey = event.key;
+        let releasedKey = event.code;
         let virtualKey = keyboard.querySelector(`[data-key="${releasedKey}"]`);
         if (virtualKey !== null) {
             virtualKey.classList.remove('active');
