@@ -94,18 +94,19 @@ a:hover {
     margin-top: 50px;
 }
 
-input {
+textarea {
     display: block;
-    background-color: rgb(85, 85, 85);
+    background-color: white;
     width: 700px;
     border-radius: 20px;
     padding: 20px;
     margin: 50px auto 50px auto;
-    color: white;
+    color: black;
     outline: none;
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 100%;
+    resize: none;
 }

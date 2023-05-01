@@ -43,12 +43,13 @@ function createVirtualKeyboard() {
 
         button.addEventListener('click', function () {
             let pressedKey = this.getAttribute('data-key');
+            console.log(pressedKey);
             let keyboardEventDown = new KeyboardEvent('keydown', { code: pressedKey });
             document.dispatchEvent(keyboardEventDown);
             let keyboardEventUp = new KeyboardEvent('keyup', { code: pressedKey });
             document.dispatchEvent(keyboardEventUp);
 
-            const inputField = document.querySelector('input');
+            const inputField = document.querySelector('textarea');
             const character = button.textContent;
             const characterToInput = character.slice(0, 1);
             if (character !== 'backspace' && character !== 'Tab' && character !== 'Del' && character !== 'Caps Lock' &&
@@ -66,7 +67,7 @@ function createVirtualKeyboard() {
     let noticeOS = document.createElement('div');
     noticeOS.setAttribute('class', 'notice');
     document.body.prepend(noticeOS);
-    noticeOS.innerHTML = 'This keyboard was created on Windows';
+    noticeOS.innerHTML = 'NOTE: his keyboard was created on Windows';
 
     document.addEventListener('keydown', function (event) {
         let pressedKey = event.code;
@@ -82,11 +83,12 @@ function createVirtualKeyboard() {
         if (virtualKey !== null) {
             virtualKey.classList.remove('active');
         }
-        const inputField = document.querySelector('input');
+        const inputField = document.querySelector('textarea');
         inputField.focus();
     });
 
-    let inputField = document.createElement('input');
+    let inputField = document.createElement('textarea');
+    inputField.setAttribute('rows', '4');
     noticeOS.after(inputField);
 
 }
