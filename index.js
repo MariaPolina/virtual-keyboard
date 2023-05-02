@@ -58,6 +58,50 @@ function createVirtualKeyboard() {
                 && character !== '►') {
                 inputField.value += characterToInput;
             }
+            if (character === 'backspace') {
+                const cursorPos = inputField.selectionStart;
+                if (cursorPos > 0) {
+                    const textBeforeCursor = inputField.value.slice(0, cursorPos - 1);
+                    const textAfterCursor = inputField.value.slice(cursorPos);
+                    inputField.value = textBeforeCursor + textAfterCursor;
+                    inputField.setSelectionRange(cursorPos - 1, cursorPos - 1);
+                }
+            }
+            if (character === 'enter') {
+                inputField.value += '\n';
+            }
+            if (character === 'Tab') {
+                const start = inputField.selectionStart;
+                const end = inputField.selectionEnd;
+                const value = inputField.value;
+                inputField.value = value.substring(0, start) + '\t' + value.substring(end);
+                inputField.selectionStart = inputField.selectionEnd = start + 1;
+            }
+            if (character === '▼') {
+                inputField.selectionStart = inputField.value.length;
+                inputField.selectionEnd = inputField.value.length;
+            }
+            if (character === '◄') {
+                const cursorPosition = inputField.selectionStart;
+                inputField.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
+            }
+            if (character === '▲') {
+                inputField.selectionStart = 0;
+                inputField.selectionEnd = 0;
+            }
+            if (character === '►') {
+                const cursorPosition = inputField.selectionStart;
+                inputField.setSelectionRange(cursorPosition + 1, cursorPosition + 1);
+            }
+            if (character === 'Del') {
+                const cursorPos = inputField.selectionStart;
+                const value = inputField.value;
+                const newValue = value.substring(0, cursorPos) + value.substring(cursorPos + 1);
+                inputField.value = newValue;
+                inputField.selectionStart = cursorPos;
+                inputField.selectionEnd = cursorPos;
+            }
+            if (character === 'Caps Lock') { }
 
         });
     }
