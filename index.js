@@ -101,7 +101,6 @@ function createVirtualKeyboard() {
                 inputField.selectionStart = cursorPos;
                 inputField.selectionEnd = cursorPos;
             }
-            if (character === 'Caps Lock') { }
 
         });
     }
