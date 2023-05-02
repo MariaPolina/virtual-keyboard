@@ -110,7 +110,7 @@ function createVirtualKeyboard() {
     let noticeOS = document.createElement('div');
     noticeOS.setAttribute('class', 'notice');
     document.body.prepend(noticeOS);
-    noticeOS.innerHTML = 'NOTE: his keyboard was created on Windows';
+    noticeOS.innerHTML = 'NOTE: this keyboard was created on Windows';
 
     document.addEventListener('keydown', function (event) {
         let pressedKey = event.code;
